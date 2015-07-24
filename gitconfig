@@ -1,0 +1,13 @@
+[user]
+	email = shian5@gmail.com
+	name = shian
+
+[push]
+	default = simple
+
+[url "https://"]
+	insteadOf = git://
+
+[core]
+	autocrlf = input
+

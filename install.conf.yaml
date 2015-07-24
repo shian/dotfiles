@@ -1,5 +1,11 @@
 
+
+- clean: 
+    - "~"
+
 - link:
     ~/.dotfiles: ''
-
-
+    ~/.i3: "i3/"
+    ~/.gitconfig: "gitconfig"
+    ~/.hgrc: "hgrc"
+    ~/.tmux.conf: 'tmux/tmux.conf'
