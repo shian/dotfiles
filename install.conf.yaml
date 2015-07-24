@@ -5,7 +5,7 @@
 
 - link:
     ~/.dotfiles: ''
-    ~/.i3: "i3/"
-    ~/.gitconfig: "gitconfig"
-    ~/.hgrc: "hgrc"
+    ~/.i3: 'i3/'
+    ~/.gitconfig: 'git/gitconfig'
+    ~/.hgrc: 'hg/hgrc'
     ~/.tmux.conf: 'tmux/tmux.conf'

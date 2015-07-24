@@ -1,8 +1,0 @@
-[ui]
-username = shian
-
-[auth]
-vsf.prefix = http://vsf/hg/shian
-vsf.username = shian
-vsf.password = 
-
