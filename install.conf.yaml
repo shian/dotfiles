@@ -10,3 +10,4 @@
     ~/.hgrc: 'hg/hgrc'
     ~/.tmux.conf: 'tmux/tmux.conf'
     ~/.zshrc: 'zsh/zshrc'
+    ~/.oh-my-zsh/custom: 'zsh/custom'
