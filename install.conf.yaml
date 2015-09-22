@@ -11,3 +11,4 @@
     ~/.tmux.conf: 'tmux/tmux.conf'
     ~/.zshrc: 'zsh/zshrc'
     ~/.oh-my-zsh/custom: 'zsh/custom'
+    ~/.vimrc: 'vim/vimrc'

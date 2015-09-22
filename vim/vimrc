@@ -1,0 +1,109 @@
+" shian's vimrc
+
+" For pathogen.vim: auto load all plugins in .vim/bundle
+
+call pathogen#infect()
+call pathogen#helptags()
+
+" General Setting
+
+set nocompatible 	" not compatible with the old-fashion vi mode
+set bs=2 		" allow backspacing over everything in insert mode
+set history=50 		" keep 50 lines of command line history
+set ruler 		" show the cursor position all the time
+set autoread 		" auto read when file is changed from outside
+
+filetype off 		" necessary to make ftdetect work on Linux
+syntax on 
+filetype on		" Enable filetype detection
+filetype indent on 	" Enable filetype-specific indenting
+filetype plugin on 	" Enable filetype-specific plugins
+
+" auto reload vimrc when editing it
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+syntax on 
+set hlsearch 		" search highlighting
+
+colors vividchalk
+
+set clipboard=unnamed 	" yank to the system register (*) by default
+set showmatch		" Cursor shows matching ) and }
+set showmode		" Show current mode
+set wildchar=<TAB>	" start wild expansion in the command line using <TAB>
+set wildmenu		" wild char completion menu
+
+" ignore these files while expanding wild chars
+set wildignore=*.o,*.class,*.pyc
+
+set autoindent 		" auto indentation
+set incsearch		" incremental search
+set nobackup		" no *~ backup files
+set copyindent		" copy the previous indentation on autoindenting
+set ignorecase 		" ignore case when searching
+set smartcase 		" ignore case if search pattern is all lowercase,case-sensitive otherwise
+set smarttab		" insert tabs on the start of a line according to context
+
+" shortcut
+let mapleader = ","
+map <leader>1 :b1
+map <leader>2 :b2
+map <leader>3 :b3
+map <leader>4 :b4
+map <leader>5 :b5
+map <leader>6 :b6
+map <leader>7 :b7
+map <leader>8 :b8
+map <leader>9 :b9
+map <leader>0 :b0
+
+" disable sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+"TAB setting {
+	set expandtab 	"replace <TAB> with spaces
+	set softtabstop=3
+	set shiftwidth=3
+
+	au FileType Makefile set noexpandtab
+"}
+
+" status line {
+set laststatus=2
+set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \
+set statusline+=\ \ \ [%{&ff}/%Y]
+set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\
+set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
+
+function! CurDir()
+   let curdir = substitute(getcwd(), $HOME, "~", "")
+   return curdir
+endfunction
+
+function! HasPaste()
+   if &paste
+      return '[PASTE]'
+   else
+      return ''
+   endif
+endfunction
+
+"}
+
+if exists('$ITERM_PROFILE')
+   if exists('$TMUX')
+      let &t_SI = "\<Esc>[3 q"
+      let &t_EI = "\<Esc>[0 q"
+   else
+      let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+   endif
+end
+
+
+
+
+
