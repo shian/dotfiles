@@ -1,11 +1,11 @@
 ## My theme for zsh
 
-PROMPT='%{$fg[blue]%}%n%{$reset_color%}@%{$fg[green]%}${PWD/#HOME/~}%b$(git_prompt_info)$(hg_prompt_info)
+PROMPT='%{$fg[blue]%}%n%{$reset_color%}@%B%m%b:%{$fg[green]%}%~
 $(prompt_char)%{$reset_color%} '
 
 function prompt_char {
-   git branch >/dev/null 2>/dev/null && echo '±' && return
-   hg root >/dev/null 2>/dev/null && echo '☿' && return
+#git branch >/dev/null 2>/dev/null && echo '±' && return
+#hg root >/dev/null 2>/dev/null && echo '☿' && return
    echo '>'
 }
 

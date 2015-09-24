@@ -12,9 +12,17 @@ set bs=2 		" allow backspacing over everything in insert mode
 set history=50 		" keep 50 lines of command line history
 set ruler 		" show the cursor position all the time
 set autoread 		" auto read when file is changed from outside
+set t_Co=256            " 設定 256 色
+"set cursorline          " 標記游標所在的列
+set number
+
+" 設定編碼
+set enc=utf-8
+set fenc=utf-8
+set fencs=utf-8,big5,gbk
 
 filetype off 		" necessary to make ftdetect work on Linux
-syntax on 
+syntax on               " 語法上色
 filetype on		" Enable filetype detection
 filetype indent on 	" Enable filetype-specific indenting
 filetype plugin on 	" Enable filetype-specific plugins
@@ -22,10 +30,9 @@ filetype plugin on 	" Enable filetype-specific plugins
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
-syntax on 
 set hlsearch 		" search highlighting
 
-colors vividchalk
+colorscheme pablo
 
 set clipboard=unnamed 	" yank to the system register (*) by default
 set showmatch		" Cursor shows matching ) and }
@@ -35,6 +42,15 @@ set wildmenu		" wild char completion menu
 
 " ignore these files while expanding wild chars
 set wildignore=*.o,*.class,*.pyc
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+" ctrlP
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$|\v[\/](ebin)'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|\v[\/](ebin)',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
 
 set autoindent 		" auto indentation
 set incsearch		" incremental search
@@ -46,16 +62,18 @@ set smarttab		" insert tabs on the start of a line according to context
 
 " shortcut
 let mapleader = ","
-map <leader>1 :b1
-map <leader>2 :b2
-map <leader>3 :b3
-map <leader>4 :b4
-map <leader>5 :b5
-map <leader>6 :b6
-map <leader>7 :b7
-map <leader>8 :b8
-map <leader>9 :b9
-map <leader>0 :b0
+map <leader>1 :b1<CR>
+map <leader>2 :b2<CR>
+map <leader>3 :b3<CR>
+map <leader>4 :b4<CR>
+map <leader>5 :b5<CR>
+map <leader>6 :b6<CR>
+map <leader>7 :b7<CR>
+map <leader>8 :b8<CR>
+map <leader>9 :b9<CR>
+map <leader>0 :b0<CR>
+" nmap <C-b> p :bprev<CR>
+" nmap <C-b> n :bnext<CR>
 
 " disable sound on errors
 set noerrorbells
@@ -65,8 +83,10 @@ set tm=500
 
 "TAB setting {
 	set expandtab 	"replace <TAB> with spaces
-	set softtabstop=3
-	set shiftwidth=3
+	set tabstop=4	
+	set softtabstop=4
+	set autoindent shiftwidth=4
+	set cindent shiftwidth=4
 
 	au FileType Makefile set noexpandtab
 "}

@@ -12,3 +12,4 @@
     ~/.zshrc: 'zsh/zshrc'
     ~/.oh-my-zsh/custom: 'zsh/custom'
     ~/.vimrc: 'vim/vimrc'
+    ~/.vim: 'vim/vim'
