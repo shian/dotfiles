@@ -32,7 +32,10 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 
 set hlsearch 		" search highlighting
 
-colorscheme pablo
+" theme
+colorscheme solarized
+set background=dark
+let g:solarized_termcolors=256
 
 set clipboard=unnamed 	" yank to the system register (*) by default
 set showmatch		" Cursor shows matching ) and }
@@ -45,13 +48,6 @@ set wildignore=*.o,*.class,*.pyc
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
-" ctrlP
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$|\v[\/](ebin)'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$|\v[\/](ebin)',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ }
-
 set autoindent 		" auto indentation
 set incsearch		" incremental search
 set nobackup		" no *~ backup files
@@ -61,19 +57,19 @@ set smartcase 		" ignore case if search pattern is all lowercase,case-sensitive 
 set smarttab		" insert tabs on the start of a line according to context
 
 " shortcut
-let mapleader = ","
-map <leader>1 :b1<CR>
-map <leader>2 :b2<CR>
-map <leader>3 :b3<CR>
-map <leader>4 :b4<CR>
-map <leader>5 :b5<CR>
-map <leader>6 :b6<CR>
-map <leader>7 :b7<CR>
-map <leader>8 :b8<CR>
-map <leader>9 :b9<CR>
-map <leader>0 :b0<CR>
-" nmap <C-b> p :bprev<CR>
-" nmap <C-b> n :bnext<CR>
+let mapleader = "`"
+"map <leader>1 :b1<cr>
+"map <leader>2 :b2<cr>
+"map <leader>3 :b3<cr>
+"map <leader>4 :b4<cr>
+"map <leader>5 :b5<cr>
+"map <leader>6 :b6<cr>
+"map <leader>7 :b7<cr>
+"map <leader>8 :b8<cr>
+"map <leader>9 :b9<cr>
+"map <leader>0 :b0<cr>
+"nmap <leader>bp :bprev<cr>
+"nmap <leader>bn :bnext<cr>
 
 " disable sound on errors
 set noerrorbells
@@ -81,49 +77,63 @@ set novisualbell
 set t_vb=
 set tm=500
 
-"TAB setting {
-	set expandtab 	"replace <TAB> with spaces
-	set tabstop=4	
-	set softtabstop=4
-	set autoindent shiftwidth=4
-	set cindent shiftwidth=4
+" TAB setting  --------------------------------------------------
+set expandtab 	"replace <TAB> with spaces
+set tabstop=4	
+set softtabstop=4
+set autoindent shiftwidth=4
+set cindent shiftwidth=4
 
-	au FileType Makefile set noexpandtab
-"}
+au FileType Makefile set noexpandtab
 
-" status line {
+" status line  --------------------------------------------------
+"set laststatus=2
+"set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \
+"set statusline+=\ \ \ [%{&ff}/%Y]
+"set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\
+"set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
+
+"function! CurDir()
+"   let curdir = substitute(getcwd(), $HOME, "~", "")
+"   return curdir
+"endfunction
+
+"function! HasPaste()
+"   if &paste
+"      return '[PASTE]'
+"   else
+"      return ''
+"   endif
+"endfunction
+
+"if exists('$ITERM_PROFILE')
+"   if exists('$TMUX')
+"      let &t_SI = "\<Esc>[3 q"
+"      let &t_EI = "\<Esc>[0 q"
+"   else
+"      let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"   endif
+"end
+
+" PLUGINS ------------------------------------------------------------
+" ctrlP
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$|\v[\/](ebin)'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|\v[\/](ebin)',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+" Use the nearest .git directory as the cwd
+let g:ctrlp_working_path_mode = 'r'
+
+nmap <leader>p :CtrlP<cr>
+" Easy bindings for its various modes
+nmap <leader>b :CtrlPBuffer<cr>
+"nmap <leader>bm :CtrlPMixed<cr>
+"nmap <leader>bs :CtrlPMRU<cr>
+
+" airline
 set laststatus=2
-set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \
-set statusline+=\ \ \ [%{&ff}/%Y]
-set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\
-set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
-
-function! CurDir()
-   let curdir = substitute(getcwd(), $HOME, "~", "")
-   return curdir
-endfunction
-
-function! HasPaste()
-   if &paste
-      return '[PASTE]'
-   else
-      return ''
-   endif
-endfunction
-
-"}
-
-if exists('$ITERM_PROFILE')
-   if exists('$TMUX')
-      let &t_SI = "\<Esc>[3 q"
-      let &t_EI = "\<Esc>[0 q"
-   else
-      let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-   endif
-end
-
-
-
-
-
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+"
